@@ -1,122 +1,242 @@
 # Scalable Telemedicine Platform
 
-A production-ready telemedicine platform built with Next.js, PostgreSQL, and Drizzle ORM. This platform enables patients to search for doctors, book appointments, and manage their consultations online.
+A scalable telemedicine platform project focused on applying modern DevOps practices, cloud infrastructure, automation, security, and monitoring to a web application.
 
-## 🚀 Features
+This platform enables patients to search for doctors, book appointments, and manage their consultations online. It is built using modern web technologies and designed to support future scalability and cloud deployment.
+
+---
+
+## Project Overview
+
+The project aims to develop and deploy a web-based telemedicine application using a modern technology stack and a planned DevOps toolchain.
+
+The application provides patient and doctor functionality, including registration, authentication, doctor discovery, appointment booking, and appointment management.
+
+The DevOps part focuses on containerization, CI/CD, infrastructure automation, deployment, security, monitoring, and logging.
+
+## Project Objectives
+
+- Establish a documented and maintainable application deployment workflow.
+- Automate build and validation tasks through CI/CD.
+- Package application components using containers.
+- Prepare scalable deployment infrastructure.
+- Apply security and code-quality checks.
+- Monitor application health, metrics, and logs.
+
+## Initial Project Scope
+
+The proposed Minimum Viable Product (MVP) includes:
+
+- Patient and doctor user roles.
+- User registration and login.
+- Doctor profiles and specialties.
+- Appointment booking, viewing, and cancellation.
+- Persistent application data storage.
+
+Real-time video consultations, online payments, and real patient medical records are outside the initial MVP scope.
+
+---
+
+## Features
 
 ### For Patients
-- ✅ User registration and authentication
-- ✅ Search doctors by specialty
-- ✅ View doctor profiles with details
-- ✅ Browse available appointment slots
-- ✅ Book appointments with reason for visit
-- ✅ View upcoming and past appointments
-- ✅ Cancel appointments
+
+- User registration and authentication.
+- Search doctors by specialty.
+- View doctor profiles with details.
+- Browse available appointment slots.
+- Book appointments with a reason for visit.
+- View upcoming and past appointments.
+- Cancel appointments.
 
 ### For Doctors
-- ✅ User registration with license verification
-- ✅ Manage availability slots
-- ✅ View assigned appointments
-- ✅ Update profile and specialties
-- ✅ Track consultation history
+
+- User registration with license information.
+- Manage availability slots.
+- View assigned appointments.
+- Update appointment statuses.
+- Track consultation history.
 
 ### System Features
-- ✅ Partial unique index to prevent double-booking
-- ✅ Database-level referential integrity
-- ✅ Role-based access control (Patient/Doctor/Admin)
-- ✅ Secure password hashing with PBKDF2
-- ✅ BigInt support for high-volume data
-- ✅ RESTful API with proper error handling
 
-## 🏗️ Architecture
+- Prevention of appointment double-booking.
+- Database-level referential integrity.
+- Role-based access control (Patient/Doctor/Admin).
+- Secure password hashing using PBKDF2.
+- BigInt support for database identifiers.
+- RESTful APIs with error handling.
+- HTTP-only authentication cookies.
+- Server-side input validation.
+
+---
+
+## Architecture
 
 ### Database Schema
 
-```
+The application uses a relational database structure:
+
+```text
 Users (Patients, Doctors, Admins)
-  ├── Patients (1:1 with Users)
-  │   └── Appointments (1:N)
-  │       └── Availability Slots (1:1)
-  ├── Doctors (1:1 with Users)
-  │   ├── Specialties (N:N)
-  │   └── Availability Slots (1:N)
-  └── Specialties (N:N)
+ ├── Patients (1:1 with Users)
+ │    └── Appointments (1:N)
+ │         └── Availability Slots
+ ├── Doctors (1:1 with Users)
+ │    ├── Specialties (N:N)
+ │    └── Availability Slots (1:N)
+ └── Specialties
 ```
 
-### Tech Stack
+### Application Technology Stack
 
-- **Frontend**: Next.js 16, React 19, Tailwind CSS
-- **Backend**: Next.js API Routes
-- **Database**: PostgreSQL with Drizzle ORM
-- **Authentication**: Session-based with PBKDF2 hashing
-- **Deployment**: Ready for production
+- **Frontend:** Next.js 16, React 19, Tailwind CSS
+- **Backend:** Next.js API Routes
+- **Database:** PostgreSQL
+- **ORM:** Drizzle ORM
+- **Authentication:** JWT with HTTP-only cookies
+- **Password Security:** PBKDF2 hashing
+- **Version Control:** Git and GitHub
 
-## 📋 Prerequisites
+### Planned DevOps Technology Stack
+
+#### Application and Infrastructure
+
+- React
+- Node.js
+- PostgreSQL
+- Redis
+
+#### DevOps and Infrastructure
+
+- Git and GitHub
+- Jenkins
+- Docker and Docker Compose
+- Ansible
+- Kubernetes
+- Nginx
+- Terraform
+- AWS
+
+#### Security and Code Quality
+
+- SonarQube
+- Trivy
+
+#### Monitoring and Logging
+
+- Prometheus
+- Grafana
+- Loki
+
+The listed technologies represent the proposed DevOps stack. Their final use will be confirmed during implementation.
+
+---
+
+## Team Responsibilities
+
+| Team Member | Assigned Tools |
+|---|---|
+| Ziad | Docker and Ansible |
+| Felopateer | Kubernetes and Nginx |
+| Hisham | Jenkins and Git |
+| Mohamed | Terraform and AWS |
+| Omar | Prometheus and Grafana |
+
+Team members will coordinate during integration, troubleshooting, testing, and documentation.
+
+---
+
+## Project Planning
+
+Project planning activities are tracked through GitHub Issues and the GitHub Projects board.
+
+The planning activities cover:
+
+1. Project scope and requirements.
+2. System architecture.
+3. Team roles and responsibilities.
+4. Project timeline and milestones.
+5. Git workflow and branch strategy.
+6. Technology stack documentation.
+7. Risk assessment and mitigation.
+8. Project KPIs and evaluation planning.
+
+### System Architecture
+
+The proposed architecture and its discussion are documented in the [System Architecture Issue](https://github.com/feloaref/scalable-telemedicine-platform/issues/2).
+
+---
+
+## Installation & Setup
+
+### Prerequisites
 
 - Node.js 18+
 - PostgreSQL 13+
 - npm or yarn
 
-## 🛠️ Installation & Setup
-
-### 1. Clone and Install
+### 1. Clone the Repository
 
 ```bash
-git clone <your-repo-url>
-cd telemedicine-platform
+git clone https://github.com/feloaref/scalable-telemedicine-platform.git
+cd scalable-telemedicine-platform
+```
+
+### 2. Install Dependencies
+
+```bash
 npm install
 ```
 
-### 2. Environment Configuration
+### 3. Environment Configuration
 
-Create a `.env` file in the project root:
+Create a `.env` file in the project root and configure the required environment variables.
 
 ```env
-DATABASE_URL=postgresql://postgres:postgres@127.0.0.1:5432/app_db
+DATABASE_URL=postgresql://USER:PASSWORD@127.0.0.1:5432/app_db
+JWT_SECRET=your-secure-random-secret
 NODE_ENV=development
+SEED_SECRET=your-local-seed-secret
 ```
 
-### 3. Initialize Database
+Replace the example values with your own local configuration. Never commit `.env` or expose its secrets.
+
+### 4. Database Setup
+
+Apply the database migrations:
 
 ```bash
-# Apply schema changes
-npx drizzle-kit push
-
-# Seed with test data
-curl -X POST http://localhost:3000/api/seed
+npx drizzle-kit migrate
 ```
 
-### 4. Run Development Server
+### 5. Run the Development Server
 
 ```bash
 npm run dev
 ```
 
-Visit `http://localhost:3000` to see your application.
+Visit:
 
-## 🔐 Test Credentials
+```text
+http://localhost:3000
+```
 
-After seeding, use these credentials:
+---
 
-**Patient Account**
-- Email: `patient@example.com`
-- Password: `password123`
-
-**Doctor Accounts**
-- Email: `cardio@example.com` (Cardiology)
-- Email: `derma@example.com` (Dermatology)
-- Email: `neuro@example.com` (Neurology)
-- Password: `password123` (all)
-
-## 📡 API Documentation
+## API Documentation
 
 ### Authentication
 
 #### Register
-```bash
+
+```http
 POST /api/auth/register
 Content-Type: application/json
+```
 
+Example request:
+
+```json
 {
   "email": "newuser@example.com",
   "password": "securepassword123",
@@ -131,299 +251,189 @@ Content-Type: application/json
 ```
 
 #### Login
-```bash
+
+```http
 POST /api/auth/login
 Content-Type: application/json
+```
 
+Example request:
+
+```json
 {
   "email": "patient@example.com",
-  "password": "password123"
-}
-
-# Response
-{
-  "message": "Login successful",
-  "user": {
-    "userId": "1",
-    "email": "patient@example.com",
-    "firstName": "John",
-    "lastName": "Doe",
-    "role": "patient"
-  }
+  "password": "your-password"
 }
 ```
+
+Successful authentication sets an HTTP-only authentication cookie.
 
 ### Doctors
 
 #### Get All Doctors
-```bash
+
+```http
 GET /api/doctors
+```
 
-# Filter by specialty
+#### Filter by Specialty
+
+```http
 GET /api/doctors?specialtyId=1
+```
 
-# Search by name
+#### Search by Name
+
+```http
 GET /api/doctors?search=Sarah
 ```
 
 #### Get Doctor Details
-```bash
+
+```http
 GET /api/doctors/{doctorId}
 ```
 
 #### Get Doctor Availability
-```bash
-GET /api/doctors/{doctorId}/slots?from=2026-10-24T00:00:00Z&to=2026-10-31T23:59:59Z
+
+```http
+GET /api/doctors/{doctorId}/slots
 ```
 
 ### Specialties
 
 #### Get All Specialties
-```bash
+
+```http
 GET /api/specialties
 ```
 
 #### Create Specialty (Admin)
-```bash
+
+```http
 POST /api/specialties
 Content-Type: application/json
+```
 
+Example request:
+
+```json
 {
   "name": "Psychiatry",
   "description": "Mental health and counseling"
 }
 ```
 
+This endpoint requires administrator authorization.
+
 ### Appointments
 
 #### Book Appointment
-```bash
+
+```http
 POST /api/appointments
 Content-Type: application/json
+```
 
+Example request:
+
+```json
 {
-  "patientId": "1",
   "slotId": "25",
   "reason": "Regular checkup and consultation"
 }
-
-# Response
-{
-  "message": "Appointment booked successfully",
-  "appointment": {
-    "appointmentId": "1",
-    "patientId": "1",
-    "slotId": "25",
-    "status": "booked",
-    "reason": "Regular checkup and consultation",
-    "createdAt": "2026-10-24T18:00:00.000Z"
-  }
-}
 ```
+
+The patient identity is obtained from the authenticated user session rather than trusting a patient ID supplied by the client.
 
 #### Get Patient Appointments
-```bash
-GET /api/appointments?patientId=1
 
-# Filter by status
-GET /api/appointments?patientId=1&status=booked
+```http
+GET /api/appointments
 ```
 
+The API returns appointments belonging to the authenticated patient.
+
 #### Cancel Appointment
-```bash
+
+```http
 POST /api/appointments/{appointmentId}/cancel
 ```
 
-## 🎨 Pages & Routes
+Only the appointment owner can cancel their appointment.
 
-### Patient Routes
-- `/` - Home page
-- `/register?role=patient` - Patient registration
-- `/login` - Login page
-- `/patient/dashboard` - Patient dashboard
-- `/patient/search` - Find doctors
-- `/patient/doctor/[id]` - Doctor profile & booking
-- `/patient/appointments` - View appointments
+### Doctor Appointments
 
-### Doctor Routes
-- `/register?role=doctor` - Doctor registration
-- `/doctor/dashboard` - Doctor dashboard
-- `/doctor/appointments` - View appointments
-- `/doctor/availability` - Manage slots
-
-## 🔒 Security Features
-
-- **Password Hashing**: PBKDF2 with salt
-- **Double-Booking Prevention**: Partial unique index on (slot_id, status)
-- **Referential Integrity**: Foreign keys with cascade deletes
-- **Role-Based Access**: Patient/Doctor/Admin roles
-- **HTTP-Only Cookies**: Secure session management
-- **Input Validation**: Server-side validation on all endpoints
-
-## 📊 Database Indexes
-
-For optimal performance:
-
-```sql
--- Already created in schema
-- idx_doctor_slots: (doctor_id)
-- idx_slot_times: (start_time, end_time)
-- idx_doctor_slot_unique: (doctor_id, start_time, end_time) [UNIQUE]
-- idx_patient_appointments: (patient_id)
-- idx_appointment_status: (status)
-- idx_slot_booking: (slot_id) WHERE status = 'booked' [PARTIAL UNIQUE]
-```
-
-## 🚀 Production Deployment
-
-### Build for Production
-```bash
-npm run build
-npm start
-```
-
-### Environment Variables for Production
-
-```env
-DATABASE_URL=postgresql://user:password@prod-db-host:5432/telemedicine_db
-NODE_ENV=production
-SEED_KEY=your-secure-seed-key-here
-```
-
-### Database Backup
-```bash
-pg_dump postgresql://user:password@host:5432/db_name > backup.sql
-```
-
-## 🧪 Testing
-
-### Test Patient Flow
-1. Register as patient
-2. Browse doctors by specialty
-3. View doctor availability
-4. Book appointment
-5. View appointments
-6. Cancel appointment
-
-### Test Doctor Flow
-1. Register as doctor
-2. Login to dashboard
-3. View profile
-4. Manage specialties
-5. View appointments
-
-## 📈 Scalability Considerations
-
-- **Database**: Use connection pooling (configured with pg)
-- **Caching**: Add Redis for frequently accessed data
-- **CDN**: Deploy static assets to CDN
-- **Load Balancing**: Use AWS ELB or similar
-- **Database Replication**: Set up read replicas
-- **Monitoring**: Implement APM and alerting
-
-## 🐛 Troubleshooting
-
-### Database Connection Error
-```bash
-# Check PostgreSQL is running
-sudo systemctl status postgresql
-
-# Verify connection string in .env
-DATABASE_URL=postgresql://postgres:postgres@127.0.0.1:5432/app_db
-```
-
-### Seed Data Not Created
-```bash
-# Manually seed database
-curl -X POST http://localhost:3000/api/seed
-```
-
-### Build Errors
-```bash
-# Clear cache and rebuild
-rm -rf .next
-npm run build
-```
-
-## 📝 API Response Format
-
-All API responses follow this format:
-
-**Success (2xx)**
-```json
-{
-  "message": "Operation successful",
-  "data": { /* response data */ }
-}
-```
-
-**Error (4xx, 5xx)**
-```json
-{
-  "error": "Error description"
-}
-```
-
-## 🔄 Data Flow
-
-### Appointment Booking Flow
-```
-1. Patient searches doctors
-2. Patient views doctor slots
-3. Patient selects slot
-4. POST /api/appointments
-5. Database checks slot availability
-6. Creates appointment record
-7. Updates slot status to booked
-8. Returns confirmation
-```
-
-### Double-Booking Prevention
-```
-1. Partial unique index on (slot_id, status='booked')
-2. Database enforces only ONE booked appointment per slot
-3. Concurrent requests handled by database lock
-4. Second request gets constraint violation
-5. API returns 409 Conflict error
-```
-
-## 📚 Further Documentation
-
-- [Database Schema Documentation](./docs/schema.md)
-- [API Reference](./docs/api.md)
-- [Deployment Guide](./docs/deployment.md)
-
-## 🤝 Contributing
-
-1. Fork the repository
-2. Create feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit changes (`git commit -m 'Add amazing feature'`)
-4. Push to branch (`git push origin feature/amazing-feature`)
-5. Open Pull Request
-
-## 📄 License
-
-MIT License - see LICENSE file for details
-
-## 📞 Support
-
-For issues and questions:
-- GitHub Issues: [Open an issue]
-- Email: support@example.com
-
-## ✅ Checklist for Production
-
-- [ ] Environment variables configured
-- [ ] Database backups configured
-- [ ] SSL/TLS certificates installed
-- [ ] Rate limiting implemented
-- [ ] Logging and monitoring enabled
-- [ ] Error tracking (Sentry/Rollbar) set up
-- [ ] Performance testing completed
-- [ ] Security audit completed
-- [ ] Documentation updated
-- [ ] Disaster recovery plan documented
+Doctors can retrieve their assigned appointments and update appointment statuses through the doctor appointment API endpoints.
 
 ---
 
-**Built with ❤️ using Next.js, PostgreSQL, and Drizzle ORM**
+## Pages & Routes
+
+### Patient Routes
+
+| Route | Description |
+|---|---|
+| `/` | Home page |
+| `/register?role=patient` | Patient registration |
+| `/login` | Login page |
+| `/patient/dashboard` | Patient dashboard |
+| `/patient/search` | Find doctors |
+| `/patient/doctor/[id]` | Doctor profile and booking |
+| `/patient/appointments` | Patient appointments |
+
+### Doctor Routes
+
+| Route | Description |
+|---|---|
+| `/register?role=doctor` | Doctor registration |
+| `/doctor/dashboard` | Doctor dashboard |
+| `/doctor/appointments` | Doctor appointments |
+| `/doctor/availability` | Manage availability slots |
+
+---
+
+## Security Features
+
+- **Password Hashing:** PBKDF2 with salt.
+- **Authentication:** JWT-based authentication using HTTP-only cookies.
+- **Role-Based Access:** Patient, Doctor, and Admin roles.
+- **Appointment Ownership:** Users can access only their authorized appointments.
+- **Double-Booking Prevention:** Database constraints and transaction-based booking.
+- **Referential Integrity:** Foreign keys and database constraints.
+- **Input Validation:** Server-side validation for API requests.
+- **Environment Protection:** Sensitive configuration stored in environment variables.
+
+---
+
+## Database Performance
+
+The database uses relational constraints and indexes to support data integrity and efficient queries.
+
+Important areas include:
+
+- Doctor availability lookup.
+- Appointment lookup by patient.
+- Appointment status filtering.
+- Unique appointment slot booking constraints.
+- Foreign-key relationships between users, doctors, patients, and appointments.
+
+---
+
+## Testing
+
+### Patient Flow
+
+1. Register as a patient.
+2. Log in.
+3. Browse doctors by specialty.
+4. View doctor availability.
+5. Book an appointment.
+6. View appointments.
+7. Cancel an appointment.
+
+### Doctor Flow
+
+1. Register as a doctor.
+2. Log in to the doctor dashboard.
+3. Manage availability
