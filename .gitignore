@@ -1,7 +1,3 @@
-
-
-
-
 # Dependencies
 /node_modules
 node_modules/
@@ -103,4 +99,3 @@ Thumbs.db
 *.tgz
 .node_repl_history
 .lock-wscript
->>>>>>> 
