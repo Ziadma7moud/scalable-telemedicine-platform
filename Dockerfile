@@ -35,6 +35,14 @@ COPY drizzle ./drizzle
 USER node
 CMD ["node_modules/.bin/drizzle-kit", "migrate"]
 
+# ---------- seed: one-off container that loads demo data (local testing only) ----------
+FROM migrator AS seed
+COPY tsconfig.json ./
+COPY src/db ./src/db
+COPY src/lib ./src/lib
+COPY src/scripts ./src/scripts
+CMD ["node_modules/.bin/tsx", "src/scripts/seed.ts"]
+
 # ---------- runner: final app image (default target) ----------
 FROM base AS runner
 ENV NODE_ENV=production
