@@ -22,7 +22,7 @@ services:
       start_period: 10s
 
   migrate:
-    image: telemedicine-migrator:latest
+    image: telemedicine-migrator:${IMAGE_TAG:-latest}
     build:
       context: .
       target: migrator
@@ -34,7 +34,7 @@ services:
         condition: service_healthy
 
   app:
-    image: telemedicine-app:latest
+    image: telemedicine-app:${IMAGE_TAG:-latest}
     build:
       context: .
       target: runner
@@ -55,7 +55,7 @@ services:
 
   # Demo data for local testing only: docker compose run --rm --build seed
   seed:
-    image: telemedicine-seed:latest
+    image: telemedicine-seed:${IMAGE_TAG:-latest}
     build:
       context: .
       target: seed
