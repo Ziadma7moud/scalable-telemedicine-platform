@@ -32,7 +32,6 @@
 
     - name: Install Docker from the official repository
       when: docker_check.results | rejectattr('rc', 'equalto', 0) | list | length > 0
-      tags: docker_install
       block:
         - name: Install repository prerequisites
           ansible.builtin.apt:
